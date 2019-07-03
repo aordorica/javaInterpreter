@@ -1,4 +1,10 @@
-package bytecode;
+package interpreter.bytecode;
+import interpreter.VirtualMachine;
 
-public class ByteCode {
+import java.util.*;
+
+public abstract class ByteCode {
+
+    public abstract void Init(ArrayList<String> list);
+    public abstract void execute(VirtualMachine virtualMachine);
 }

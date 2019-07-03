@@ -1,6 +1,6 @@
 package interpreter.bytecode;
 
-public class LOAD extends ByteCode {
+public class LoadCode extends ByteCode {
     @Override
     public void Init() {
 

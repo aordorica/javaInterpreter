@@ -8,6 +8,8 @@ package interpreter;
 
 import java.util.HashMap;
 
+// DO NOT MODIFY THIS CALSS: IT IS ALREADY IMPLEMENTED!!
+
 public class CodeTable {
     
     private static HashMap<String,String> codeTable;

@@ -1,13 +1,17 @@
 package interpreter.bytecode;
 
-public class STORE extends ByteCode {
+import interpreter.VirtualMachine;
+
+import java.util.ArrayList;
+
+public class StoreCode extends ByteCode {
     @Override
-    public void Init() {
+    public void Init(ArrayList<String> list) {
 
     }
 
     @Override
-    public void execute() {
+    public void execute(VirtualMachine virtualMachine) {
 
     }
 }

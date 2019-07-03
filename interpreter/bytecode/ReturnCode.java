@@ -1,13 +1,18 @@
 package interpreter.bytecode;
 
-public class RETURN extends ByteCode {
+import interpreter.VirtualMachine;
+
+import java.util.ArrayList;
+
+public class ReturnCode extends ByteCode {
+
     @Override
-    public void Init() {
+    public void Init(ArrayList<String> list) {
 
     }
 
     @Override
-    public void execute() {
+    public void execute(VirtualMachine virtualMachine) {
 
     }
 }

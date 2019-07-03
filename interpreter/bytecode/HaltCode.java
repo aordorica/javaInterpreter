@@ -3,15 +3,21 @@ package interpreter.bytecode;
 /* Purpose:
  Halt the execution of program */
 
-public class HALT extends ByteCode {
+import interpreter.VirtualMachine;
+
+import java.util.ArrayList;
+
+public class HaltCode extends ByteCode {
+    public ArrayList<String> args;
+
 
     @Override
-    public void Init() {
-
+    public void Init(ArrayList<String> arguments) {
+        args = arguments;
     }
 
     @Override
-    public void execute() {
-
+    public void execute(VirtualMachine vm) {
+        vm.haltProgram();
     }
 }
