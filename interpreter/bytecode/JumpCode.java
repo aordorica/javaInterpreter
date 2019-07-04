@@ -4,7 +4,8 @@ import interpreter.VirtualMachine;
 
 import java.util.ArrayList;
 
-public class CallCode extends JumpCode{
+public class JumpCode extends ByteCode {
+
     String label;
     int address;
     @Override

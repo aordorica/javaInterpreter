@@ -26,7 +26,8 @@ public class VirtualMachine {
             //keep vm running code here
             ByteCode code = program.getCode(pc);
             code.execute(this);
-            if (this.dumpState && !(code instanceof DumpCode)){
+            if (//this.dumpState && !
+                    (code instanceof DumpCode)){
                 System.out.println(code);
                 runStack.dump();
             }

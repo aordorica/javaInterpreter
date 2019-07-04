@@ -41,7 +41,7 @@ public class ByteCodeLoader extends Object {
     public Program loadCodes() {
 
         program = new Program();
-        //Creat arraylist object to store tokens
+        //Creat arraylist object to store the tokenized arguments from each line
         arguments = new ArrayList<String>();
 
         try {
@@ -74,13 +74,19 @@ public class ByteCodeLoader extends Object {
                     ByteCode bytecode = (ByteCode) c.getDeclaredConstructor().newInstance();
                     // Pass bytecode arguments to designated bytecode subclass's Init() function
                     bytecode.Init(arguments);
+
+                    // Call program objects's add() method to add each byteCode to the program arraylist which stores all the bytecodes read from the line
+                    // into a byteCode arraylist<byteCode>
                     program.add(bytecode);
+                    // Catch all exceptions while instantiating byteCode subclasses and print out message
                 } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                    System.out.println(e.getMessage()); // Print out exception
+                    System.out.println(e.getMessage()); // Print out exceptions to console
                 }
+                // Read the next line from the file
+                line = byteSource.readLine();
             }
         } catch (IOException e) {
-            //Print exception message
+            //Print exception message to console
            System.out.println(e.getMessage());
         }
 

@@ -1,5 +1,6 @@
 package interpreter;
 import interpreter.bytecode.ByteCode;
+import interpreter.bytecode.JumpCode;
 
 import java.util.ArrayList;
 
@@ -27,13 +28,17 @@ public class Program {
      *
      */
     public void resolveAddrs() {
-
+        for (int i=0; i < program.size(); i++){
+            if (program.get(i) instanceof JumpCode){
+                String label = ((JumpCode) program.get(i)).getLabel();
+                ((JumpCode) program.get(i)).setAddrs();
+                System.out.println(((JumpCode) program.get(i)));
+            }
+        }
     }
 
     protected void add(ByteCode byteCode){
         program.add(byteCode);
     }
-
-
 
 }
