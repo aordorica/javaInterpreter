@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class LoadCode extends ByteCode {
     @Override
-    public void Init(ArrayList<String> list) {
+    public void init(ArrayList<String> list) {
 
     }
 

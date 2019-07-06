@@ -8,10 +8,12 @@ public class ArgsCode extends ByteCode {
 
     private ArrayList<String> arguments;
     private int numArgs;
+    private String label;
 
     @Override
-    public void Init(ArrayList<String> args) {
+    public void init(ArrayList<String> args) {
         arguments = args;
+        label = arguments.get(0);
     }
 
     @Override

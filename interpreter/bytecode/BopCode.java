@@ -8,7 +8,7 @@ public class BopCode extends ByteCode {
 
     private ArrayList<String> arguments;
     @Override
-    public void Init(ArrayList<String> args) {
+    public void init(ArrayList<String> args) {
         arguments = args;
     }
 

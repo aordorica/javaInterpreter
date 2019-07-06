@@ -4,24 +4,28 @@ import interpreter.VirtualMachine;
 
 import java.util.ArrayList;
 
-public class GoToCode extends JumpCode {
-    String label;
-    int address;
-    @Override
-    public void Init(ArrayList<String> args) {
-        label = args.get(1);
+public class GotoCode extends JumpCode {
+    private String label;
+    private int address;
+    private ArrayList<String> addrsArguments;
+
+    public void init(ArrayList<String> args) {
+        addrsArguments = args;
+        label = addrsArguments.get(0);
+        address = 0;
     }
 
-    @Override
     public void execute(VirtualMachine virtualMachine) {
-
+       // virtualMachine
     }
 
+    @Override
     public String getLabel(){
         return this.label;
     }
 
-    public void setAddrs(){
-
+    @Override
+    public void setAddrs(int adrss) {
+        this.address = adrss;
     }
 }

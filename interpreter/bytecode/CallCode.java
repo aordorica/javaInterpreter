@@ -8,8 +8,8 @@ public class CallCode extends JumpCode{
     String label;
     int address;
     @Override
-    public void Init(ArrayList<String> args) {
-        label = args.get(1);
+    public void init(ArrayList<String> args) {
+        label = args.get(0);
     }
 
     @Override
@@ -21,7 +21,8 @@ public class CallCode extends JumpCode{
         return this.label;
     }
 
-    public void setAddrs(){
-
+    @Override
+    public void setAddrs(int adrss) {
+        this.address = adrss;
     }
 }

@@ -12,7 +12,7 @@ public class HaltCode extends ByteCode {
 
 
     @Override
-    public void Init(ArrayList<String> arguments) {
+    public void init(ArrayList<String> arguments) {
         args = arguments;
     }
 
