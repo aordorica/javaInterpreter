@@ -31,18 +31,21 @@ public class Program {
      *
      */
     void resolveAddrs() {
+        addressHashMap = new HashMap<String, Integer>();
         for (int i=0; i < program.size(); i++){
             if (program.get(i) instanceof LabelCode){
                 String label = ((LabelCode) this.program.get(i)).getLabel();
-                this.addressHashMap.put(label, i);
+                addressHashMap.put(label, i);
             }
         }
 
         for (ByteCode byteCode : program) {
             if (byteCode instanceof JumpCode) {
-                ((JumpCode) byteCode).setAddrs(addressHashMap.get(((JumpCode) byteCode).getLabel()));
+                ((JumpCode) byteCode).setAddress(addressHashMap.get(((JumpCode) byteCode).getLabel()));
             }
         }
+
+        System.out.println(program.iterator());
     }
 
     void add(ByteCode byteCode){

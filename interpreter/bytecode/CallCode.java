@@ -5,8 +5,9 @@ import interpreter.VirtualMachine;
 import java.util.ArrayList;
 
 public class CallCode extends JumpCode{
-    String label;
-    int address;
+    private String label;
+    private int address;
+
     @Override
     public void init(ArrayList<String> args) {
         label = args.get(0);
@@ -22,7 +23,7 @@ public class CallCode extends JumpCode{
     }
 
     @Override
-    public void setAddrs(int adrss) {
-        this.address = adrss;
+    public void setAddress(int address) {
+        this.address = address + 1;
     }
 }

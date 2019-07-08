@@ -5,7 +5,7 @@ import interpreter.VirtualMachine;
 import java.util.ArrayList;
 
 public class JumpCode extends ByteCode {
-    String label;
+    private String label;
     int address;
     public void init(ArrayList<String> args) {
     }
@@ -17,7 +17,6 @@ public class JumpCode extends ByteCode {
     public String getLabel(){ return label;
     }
 
-    public void setAddrs(int adrss){
-        this.address = adrss;
+    public void setAddress(int address) {
     }
 }

@@ -7,11 +7,9 @@ import java.util.ArrayList;
 public class GotoCode extends JumpCode {
     private String label;
     private int address;
-    private ArrayList<String> addrsArguments;
 
     public void init(ArrayList<String> args) {
-        addrsArguments = args;
-        label = addrsArguments.get(0);
+        label = args.get(0);
         address = 0;
     }
 
@@ -25,7 +23,7 @@ public class GotoCode extends JumpCode {
     }
 
     @Override
-    public void setAddrs(int adrss) {
-        this.address = adrss;
+    public void setAddress(int address) {
+        this.address = address + 1;
     }
 }

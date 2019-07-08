@@ -39,8 +39,23 @@ public class VirtualMachine {
             this.isRunning = false;
     }
 
-    public void newFrameAt(int num){
-        this.newFrameAt(num);
+    private void newFrameAt(int num){
+        this.runStack.newFrameAt(num);
     }
 
+    private void popFrame(){
+
+    }
+
+    private int store(int offset){
+        return 0;
+    }
+
+    private int load(int offset){
+        return 0;
+    }
+
+    private Integer push(Integer val){
+        return 0;
+    }
 }
