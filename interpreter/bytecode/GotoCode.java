@@ -10,11 +10,10 @@ public class GotoCode extends JumpCode {
 
     public void init(ArrayList<String> args) {
         label = args.get(0);
-        address = 0;
     }
 
     public void execute(VirtualMachine virtualMachine) {
-       // virtualMachine
+       virtualMachine.setPC(address);
     }
 
     @Override
@@ -24,6 +23,6 @@ public class GotoCode extends JumpCode {
 
     @Override
     public void setAddress(int address) {
-        this.address = address + 1;
+        this.address = address;
     }
 }

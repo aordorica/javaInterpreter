@@ -9,7 +9,6 @@ import java.util.HashMap;
 public class Program {
 
     private ArrayList<ByteCode> program;
-    private HashMap<String, Integer> addressHashMap;
 
     public Program() {
         program = new ArrayList<>();
@@ -31,7 +30,7 @@ public class Program {
      *
      */
     void resolveAddrs() {
-        addressHashMap = new HashMap<String, Integer>();
+        HashMap<String, Integer> addressHashMap = new HashMap<String, Integer>();
         for (int i=0; i < program.size(); i++){
             if (program.get(i) instanceof LabelCode){
                 String label = ((LabelCode) this.program.get(i)).getLabel();
@@ -44,8 +43,6 @@ public class Program {
                 ((JumpCode) byteCode).setAddress(addressHashMap.get(((JumpCode) byteCode).getLabel()));
             }
         }
-
-        System.out.println(program.iterator());
     }
 
     void add(ByteCode byteCode){

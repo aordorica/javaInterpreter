@@ -1,6 +1,7 @@
 package interpreter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Stack;
 
 public class RunTimeStack {
@@ -20,15 +21,38 @@ public class RunTimeStack {
         //Void function used to dump the current state of the
         //RuntimeStack. When printing the runtime stack make sure to include divisions between frames
         //If a frame is empty, this  ust be shown as well.
+        Iterator iter = framePointer.iterator();
+        int nextFrame;
+        int currentFrame = (Integer) iter.next();
+        //print contents of runtime stack
+        for (int i = 0; i < framePointer.size(); i++) {
+            if (iter.hasNext()) {
+                nextFrame = (Integer) iter.next();
+            } else {
+                nextFrame = runTimeStack.size();
+            }
+
+            System.out.print("[");
+            //print contents of current frame
+            for (int j = currentFrame; j < nextFrame; j++) {
+                System.out.print(runTimeStack.get(j));
+                if (j != nextFrame - 1) {
+                    System.out.print(",");
+                }
+            }
+            System.out.print("]");
+            currentFrame = nextFrame;
+        }
+        System.out.println();
     }
     public int peek(){
         return runTimeStack.get(runTimeStack.size()-1); //returns top of stack
     }
-    public void newFrameAt(int offset){
+    void newFrameAt(int offset){
         //creates a new frame in the RuntimeStack class. The
         //parameter offset is used to denote how many slots down
         //from the top of RuntimeStack for starting a new frame.
-        framePointer.push(runTimeStack.size() - offset);
+        framePointer.push(this.runTimeStack.size() - offset);
     }
     public void popFrame(){
         // we pop the top frame when we return from a function.

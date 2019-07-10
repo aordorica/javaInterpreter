@@ -15,7 +15,8 @@ public class CallCode extends JumpCode{
 
     @Override
     public void execute(VirtualMachine virtualMachine) {
-
+        virtualMachine.pushReturnAddrs();
+        virtualMachine.setPC(address);
     }
 
     public String getLabel(){

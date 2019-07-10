@@ -18,7 +18,9 @@ public class FalseBranchCode extends JumpCode {
 
     @Override
     public void execute(VirtualMachine virtualMachine) {
-
+        if(virtualMachine.pop() == 0 ){
+            virtualMachine.setPC(address);
+        }
     }
 
     public String getLabel(){

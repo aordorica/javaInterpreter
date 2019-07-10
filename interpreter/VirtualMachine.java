@@ -8,10 +8,11 @@ import java.util.Stack;
 public class VirtualMachine {
 
     private RunTimeStack runStack;
-    private Stack returnAddrs;
+    private Stack<Integer> returnAddrs;
     private Program program;
     private int pc;
     private boolean isRunning;
+    private boolean dumpState;
 
     protected VirtualMachine(Program program) {
         this.program = program;
@@ -24,10 +25,9 @@ public class VirtualMachine {
         isRunning = true;
         while(isRunning){
             //keep vm running code here
-            ByteCode code = program.getCode(pc);
-            code.execute(this);
-            if (//this.dumpState && !
-                    (code instanceof DumpCode)){
+            ByteCode code = program.getCode(pc); // gets first ByteCode
+            code.execute(this); // executes first ByteCode's execute method
+            if (this.dumpState && !(code instanceof DumpCode)){
                 System.out.println(code);
                 runStack.dump();
             }
@@ -35,27 +35,49 @@ public class VirtualMachine {
         }
     }
 
+    public void setDump(Boolean dump){
+        dumpState = dump;
+    }
     public void haltProgram(){
-            this.isRunning = false;
+        isRunning = false;
     }
 
-    private void newFrameAt(int num){
+    public void newFrameAt(int num){
         this.runStack.newFrameAt(num);
     }
 
-    private void popFrame(){
-
+    public void popFrame(){
+        runStack.popFrame();
     }
 
-    private int store(int offset){
-        return 0;
+    public int store(int offset){
+        return runStack.store(offset);
     }
 
-    private int load(int offset){
-        return 0;
+    public int load(int offset){
+        return runStack.load(offset);
     }
 
-    private Integer push(Integer val){
-        return 0;
+    public Integer push(Integer val){
+        return runStack.push(val);
+    }
+
+    public void setPC(int pc){
+        this.pc = pc;
+    }
+
+    public int pop(){
+        return runStack.pop();
+    }
+
+    public int peek(){
+        return runStack.peek();
+    }
+
+    public int  pushReturnAddrs(){
+        return returnAddrs.push(pc);
+    }
+    public int popReturnAddrs(){
+        return returnAddrs.pop();
     }
 }

@@ -12,6 +12,6 @@ public class WriteCode extends ByteCode {
 
     @Override
     public void execute(VirtualMachine virtualMachine) {
-
+        System.out.println(virtualMachine.peek());
     }
 }

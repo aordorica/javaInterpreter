@@ -5,9 +5,11 @@ import interpreter.VirtualMachine;
 import java.util.ArrayList;
 
 public class LitCode extends ByteCode {
-    @Override
-    public void init(ArrayList<String> list) {
+    int label;
 
+    @Override
+    public void init(ArrayList<String> args) {
+        label = Integer.parseInt(args.get(0));
     }
 
     @Override
