@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class WriteCode extends ByteCode {
     @Override
-    public void Init(ArrayList<String> list) {
+    public void init(ArrayList<String> list) {
 
     }
 
     @Override
     public void execute(VirtualMachine virtualMachine) {
-
+        System.out.println(virtualMachine.peek());
     }
 }

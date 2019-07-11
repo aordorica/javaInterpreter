@@ -1,12 +1,11 @@
 
 package interpreter;
 
-import interpreter.bytecode.ByteCode;
+import interpreter.bytecode.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -39,23 +38,18 @@ public class ByteCodeLoader extends Object {
 
     // Sample code for scanner to read file or keyboard input from source code provided in class. fine-tune later
     public Program loadCodes() {
-
-        program = new Program();
-        //Creat arraylist object to store tokens
-        arguments = new ArrayList<String>();
-
         try {
-            //Make sure ArrayList is empty before proceeding
-            arguments.clear();
-            // Read the next line for the file
+            program = new Program();
+            //Creat arraylist object to store the tokenized arguments from each line
+            arguments = new ArrayList<String>();
+            // Read first line for the file
             line = byteSource.readLine();
-
             // Loop to parse the current line into tokens and match to ByteCode from CodeTable
             while(line != null) {
 
                 //Instantiate tokenizer object with string argument "line" to be tokenized
                 token = new StringTokenizer(line);
-
+                arguments.clear();
                 code = token.nextToken();
                 className = CodeTable.getClassName(code);
 
@@ -63,24 +57,28 @@ public class ByteCodeLoader extends Object {
                 while(token.hasMoreTokens()){
                     arguments.add(token.nextToken());
                 }
-
-                // Declare class variable with generic type
-                Class <?>c = null;
-                // Catch no class found expceptions and print exception message
-                try {
+                // Obtain class blueprint for the class matching the string bytecode token
+                Class c = Class.forName("interpreter.bytecode." + className);
+                ByteCode bytecode = (ByteCode) c.getDeclaredConstructor().newInstance();
+                bytecode.init(arguments);
+                program.add(bytecode);
+              /*  try {
                     // Obtain class blueprint for the class matching the string bytecode token
-                    c = Class.forName("interpreter.bytecode." + className);
+                    Class c = Class.forName("interpreter.bytecode." + className);
                     // Instantiate bytecode class using specific subclasses from class token
                     ByteCode bytecode = (ByteCode) c.getDeclaredConstructor().newInstance();
-                    // Pass bytecode arguments to designated bytecode subclass's Init() function
-                    bytecode.Init(arguments);
+                    // Pass bytecode arguments to designated bytecode subclass's init() function
+                    bytecode.init(arguments);
                     program.add(bytecode);
-                } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                    System.out.println(e.getMessage()); // Print out exception
-                }
+                    // Catch all exceptions while instantiating byteCode subclasses and print out message
+                } catch (Exception e) {
+                    System.out.println(e.getMessage()); // Print out exceptions to console
+                }*/
+                // Read the next line from the file
+                line = byteSource.readLine();
             }
-        } catch (IOException e) {
-            //Print exception message
+        } catch (Exception e) {
+            //Print exception message to console
            System.out.println(e.getMessage());
         }
 

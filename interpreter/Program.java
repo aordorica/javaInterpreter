@@ -1,7 +1,10 @@
 package interpreter;
-import interpreter.bytecode.ByteCode;
+import interpreter.bytecode.*;
+import interpreter.bytecode.JumpCode;
+import interpreter.bytecode.LabelCode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Program {
 
@@ -26,14 +29,24 @@ public class Program {
      * HINT: make note what type of data-stucture bytecodes are stored in.
      *
      */
-    public void resolveAddrs() {
+    void resolveAddrs() {
+        HashMap<String, Integer> addressHashMap = new HashMap<String, Integer>();
+        for (int i=0; i < program.size(); i++){
+            if (program.get(i) instanceof LabelCode){
+                String label = ((LabelCode) this.program.get(i)).getLabel();
+                addressHashMap.put(label, i);
+            }
+        }
 
+        for (ByteCode byteCode : program) {
+            if (byteCode instanceof JumpCode) {
+                ((JumpCode) byteCode).setAddress(addressHashMap.get(((JumpCode) byteCode).getLabel()));
+            }
+        }
     }
 
-    protected void add(ByteCode byteCode){
+    void add(ByteCode byteCode){
         program.add(byteCode);
     }
-
-
 
 }
