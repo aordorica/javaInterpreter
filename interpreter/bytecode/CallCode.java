@@ -25,6 +25,6 @@ public class CallCode extends JumpCode{
 
     @Override
     public void setAddress(int address) {
-        this.address = address + 1;
+        this.address = address;
     }
 }

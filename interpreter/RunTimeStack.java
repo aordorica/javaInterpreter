@@ -45,6 +45,7 @@ public class RunTimeStack {
         }
         System.out.println();
     }
+
     public int peek(){
         return runTimeStack.get(runTimeStack.size()-1); //returns top of stack
     }
@@ -60,11 +61,12 @@ public class RunTimeStack {
         // so we’ll save the value, then pop the top frame and then push the return value back onto the stack.
         // It is assumed return values are at the top of the stack.
         int topStack = this.peek();
-        while((runTimeStack.size() -1) >= framePointer.pop()){
+        while((runTimeStack.size() -1) >= framePointer.peek()){
             if (!runTimeStack.isEmpty()){
                 this.pop();
             }
         }
+        this.framePointer.pop();
         this.push(topStack);
     }
     public int store(int offset) {
@@ -80,9 +82,10 @@ public class RunTimeStack {
         // No values should be removed with load.
        int temp = runTimeStack.get(framePointer.peek() + offset);
        runTimeStack.add(temp);
+
        return temp;
     }
-    public Integer push(Integer val){
+    public int push(int val){
         //Used to load literal values onto the RuntimeStack. For
         //example, LIT 5 or LIT 0 will call push with val being 5 or val being 0.
         runTimeStack.add(val);
@@ -90,6 +93,7 @@ public class RunTimeStack {
     }
 
     public int pop(){
+        // removes an item from the top and returns it
         return runTimeStack.remove(runTimeStack.size()-1);
     }
 }

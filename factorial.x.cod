@@ -1,5 +1,4 @@
 GOTO start<<1>>
-WRITE
 LABEL Read
 READ
 RETURN

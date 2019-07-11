@@ -15,7 +15,7 @@ public class DumpCode extends ByteCode {
     @Override
     public void execute(VirtualMachine virtualMachine) {
         if (dumpArgs.equals("ON")){
-            virtualMachine.setDump(true);
+            virtualMachine.setDumpCode(true);
         }
     }
 }

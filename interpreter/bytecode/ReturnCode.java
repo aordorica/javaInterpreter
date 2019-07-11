@@ -13,8 +13,9 @@ public class ReturnCode extends ByteCode {
     public void init(ArrayList<String> args) {
         if (!args.isEmpty()){
             funcName = args.get(0);
-        }else
-            funcName = "";
+        }
+//        else
+//            funcName = "";
     }
 
     @Override
